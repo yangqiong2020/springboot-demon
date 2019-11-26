@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import yq.pojo.Users;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -44,5 +45,14 @@ public class DemoController {
         map.put("u3", new Users(1,23,"张三3"));
         model.addAttribute("map", map);
         return "index4";
+    }
+
+    @RequestMapping("/show5")
+    public String showInfo5(HttpServletRequest request,Model model){
+        request.setAttribute("req","HttpServletRequest");
+        request.getSession().setAttribute("sess","HttpSession");
+        request.getSession().getServletContext().setAttribute("app","servletContext");
+        model.addAttribute("model","model");
+        return "index5";
     }
 }

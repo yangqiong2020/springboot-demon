@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>作用域</title>
+</head>
+<body>
+    request:<span th:text="${#httpServletRequest.getAttribute('req')}" />
+    <hr/>
+    session:<span th:text="${session.sess}"/>
+    <hr/>
+    application:<span th:text="${application.app}"/>
+    <hr/>
+    model:<span th:text="${model}" />
+</body>
+</html>
