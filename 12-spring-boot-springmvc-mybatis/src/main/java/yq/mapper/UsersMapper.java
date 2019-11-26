@@ -9,4 +9,5 @@ public interface UsersMapper {
     List<Users> selectUsersAll();
     Users selectUsersById(Integer id);
     void updateUser(Users users);
+    void deleteUser(Integer users);
 }

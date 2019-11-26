@@ -60,4 +60,13 @@ public class UsersController {
         this.usersService.updateUser(users);
         return "ok";
     }
+
+    /**
+     * 删除用户
+     */
+    @RequestMapping("deleteUser")
+    public String deleteUser(Integer userid){
+        this.usersService.deleteUser(userid);
+        return "redirect:/users/findUserAll";  //这里必须是redirect重定向到
+    }
 }

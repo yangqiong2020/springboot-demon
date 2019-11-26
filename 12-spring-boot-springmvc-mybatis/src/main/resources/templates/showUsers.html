@@ -18,6 +18,7 @@
 			<td th:text="${user.userage}"></td>
 			<td>
 				<a th:href="@{/users/findUserById(userid=${user.userid})}">更新用户</a>
+				<a th:href="@{/users/deleteUser(userid=${user.userid})}">删除用户</a>
 			</td>
 		</tr>
 	</table>
