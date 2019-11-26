@@ -10,4 +10,12 @@
     <select id="selectUsersAll" resultType="users">
         select userid,userage,username from users
     </select>
+
+    <select id="selectUsersById" resultType="users">
+        select userid,userage,username from users where userid=#{value}
+    </select>
+
+    <update id="updateUser" parameterType="users">
+        update users set username=#{username},userage=#{userage} where userid=#{userid}
+    </update>
 </mapper>

@@ -39,4 +39,25 @@ public class UsersController {
         model.addAttribute("list",userAll);
         return "showUsers";
     }
+    /**
+     * 通过id查用户
+     */
+    @RequestMapping("/findUserById")
+    public String findUserById(Model model,Integer userid){
+        System.out.println("userid ...."+userid);
+        Users users = this.usersService.findUserById(userid);
+        model.addAttribute("user",users);
+        return "updateUser";
+    }
+
+    /**
+     * 修改用户
+     * @param users
+     * @return
+     */
+    @RequestMapping("/editUser")
+    public String editUser(Users users){
+        this.usersService.updateUser(users);
+        return "ok";
+    }
 }
