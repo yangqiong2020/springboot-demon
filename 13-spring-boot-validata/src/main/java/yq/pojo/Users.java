@@ -1,13 +1,31 @@
 package yq.pojo;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Min;
 
 public class Users {
-	@NotBlank //非空校验
+	@NotBlank(message = "用户名不能为空") //非空校验
+	@Length(min = 2,max = 6,message = "长度最小为2最大为6")
 	private String name;
-	@NotBlank
+	@NotEmpty
 	private String password;
+	@Min(value = 15)
 	private Integer age;
+	@Email
+	private  String email;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getName() {
 		return name;
 	}
