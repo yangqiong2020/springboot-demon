@@ -1,7 +1,11 @@
 package yq.pojo;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Users {
+	@NotBlank //非空校验
 	private String name;
+	@NotBlank
 	private String password;
 	private Integer age;
 	public String getName() {
