@@ -8,5 +8,34 @@
 	<span th:text="Hello"></span>
 	<hr/>
 	<span th:text="${msg}"></span>
+	<hr/>
+	<input type="text" name="username" th:value="${msg}" />
+	<hr/>
+	<span th:text="${#strings.isEmpty(msg)}"/>
+	<hr/>
+	<span th:text="${#strings.contains(msg,'9')}"/>
+	<hr/>
+	<span th:text="${#strings.startsWith(msg,'a')}" />
+	<hr/>
+	<span th:text="${#strings.endsWith(msg,'a')}"/>
+	<hr/>
+	<span th:text="${#strings.length(msg)}"/>
+	<hr/>
+	<span th:text="${#strings.indexOf(msg,'h')}" />
+	<hr/>
+	<span th:text="${#strings.substring(msg,1)}"/>
+	<span th:text="${#strings.substring(msg,2,3)}"/>
+	<hr/>
+	<span th:text="${#strings.toUpperCase(msg)}" />
+	<span th:text="${#strings.toLowerCase(msg)}" />
+	<hr/>
+	<span th:text="${#dates.format(key)}" />
+	<span th:text="${#dates.format(key,'yyy/MM/dd')}"/>
+	<hr/>
+	<span th:text="${#dates.year(key)}"/>
+	<hr/>
+	<span th:text="${#dates.month(key)}" />
+	<hr/>
+	<span th:text="${#dates.day(key)}"/>
 </body>
 </html>
