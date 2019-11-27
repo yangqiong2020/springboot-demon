@@ -1,11 +1,6 @@
 package yq.pojo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="t_users")
@@ -24,7 +19,10 @@ public class Users {
 	
 	@Column(name="address")
 	private String address;
-
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	//@JoinColumn:维护外键
+	@JoinColumn(name="roles_id")
+	private Roles roles;
 	public Integer getId() {
 		return id;
 	}
@@ -61,6 +59,13 @@ public class Users {
 	public String toString() {
 		return "Users [id=" + id + ", name=" + name + ", age=" + age + ", address=" + address + "]";
 	}
-	
-	
+
+
+	public Roles getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Roles roles) {
+		this.roles = roles;
+	}
 }
