@@ -10,7 +10,7 @@ import java.util.Properties;
  * 通过simpleMappingExceptionResolver做全局异常处理
  */
 @Configuration
-public class GlobalException {
+public class GlobalException2 {
     /**
      * 该方法必须要有返回值，返回值类型必须是：SimpleMappingExceptionResolver
      * @return

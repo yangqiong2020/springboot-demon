@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
  * 全局异常处理类
  */
 @ControllerAdvice
-public class GolbalException {
+public class GlobalException1 {
     /**
      * java.lang.ArithmeticException
      * 该方法需要返回一个ModelAndView：目的是可以让我们封装异常信息以及视图的指定
