@@ -3,13 +3,7 @@ package yq.pojo;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="t_roles")
@@ -25,6 +19,20 @@ public class Roles {
 	
 	@OneToMany(mappedBy="roles")
 	private Set<Users> users = new HashSet<>();
+
+	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+	//@JoinTable:映射中间表
+	//joinColumns:当前表中的主键所关联的中间表中的外键字段
+	@JoinTable(name="t_roles_menus",joinColumns=@JoinColumn(name="role_id"),inverseJoinColumns=@JoinColumn(name="menu_id"))
+	private Set<Menus> menus = new HashSet<>();
+
+	public Set<Menus> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(Set<Menus> menus) {
+		this.menus = menus;
+	}
 
 	public Integer getRoleid() {
 		return roleid;
