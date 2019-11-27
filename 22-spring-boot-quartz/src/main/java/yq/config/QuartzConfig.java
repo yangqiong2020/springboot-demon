@@ -62,11 +62,11 @@ public class QuartzConfig {
 	 * 3.创建Scheduler对象
 	 */
 	@Bean
-	public SchedulerFactoryBean schedulerFactoryBean(CronTriggerFactoryBean cronTriggerFactoryBean){
+	public SchedulerFactoryBean schedulerFactoryBean(CronTriggerFactoryBean cronTriggerFactoryBean,MyAdaptableJobFactory myAdaptableJobFactory){
 		SchedulerFactoryBean factory = new SchedulerFactoryBean();
 		//关联trigger
 		factory.setTriggers(cronTriggerFactoryBean.getObject());
-		
+		factory.setJobFactory(myAdaptableJobFactory); //不加这个会报错 Job DEFAULT.jobDetailFactoryBean threw an unhandled Exception:  需要把对象注入进来
 		return factory;
 	}
 }
