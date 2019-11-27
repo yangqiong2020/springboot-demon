@@ -3,6 +3,7 @@ package yq.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +31,7 @@ public class UsersServiceImpl implements UserService {
 
 	@Override
 	//@Cacheable:对当前查询的对象做缓存处理
-	@Cacheable(value="users")
+	@Cacheable(value="users") //这里的users要和ehcache.xml配置的缓存策略名一样
 	public Users findUserById(Integer id) {
 		return this.usersRepository.findOne(id);
 	}
@@ -42,7 +43,8 @@ public class UsersServiceImpl implements UserService {
 	}
 
 	@Override
-	public void saveUsers(Users users) {
+    @CacheEvict(value="users",allEntries=true) //当修改了数据库中的数据时，缓存要么和数据库同步，要么清除掉，下次查询时从数据库中查
+    public void saveUsers(Users users) {
 		this.usersRepository.save(users);
 	}
 

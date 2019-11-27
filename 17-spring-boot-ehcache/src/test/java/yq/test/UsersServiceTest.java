@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import yq.App;
+import yq.pojo.Users;
 import yq.service.UserService;
 
 /**
@@ -22,7 +23,10 @@ public class UsersServiceTest {
 
 	@Autowired
 	private UserService usersService;
-	
+
+    /**
+     * 缓存基本演示
+     */
 	@Test
 	public void testFindUserById(){
 		//第一次查询
@@ -32,6 +36,9 @@ public class UsersServiceTest {
 		System.out.println(this.usersService.findUserById(1));
 	}
 
+    /**
+     * 缓存的key和查询时的key相同就从缓存去，容易查错数据
+     */
     @Test
     public void testFindUserByPage(){
         Pageable pageable = new PageRequest(0, 2);
@@ -44,5 +51,20 @@ public class UsersServiceTest {
         //第三次查询
         pageable = new PageRequest(1, 2);
         System.out.println(this.usersService.findUserByPage(pageable).getTotalElements());
+    }
+
+    @Test
+    public void testFindAll(){
+        //第一次查询
+        System.out.println(this.usersService.findUserAll().size());
+
+        Users users = new Users();
+        users.setAddress("南京");
+        users.setAge(43);
+        users.setName("朱七");
+        this.usersService.saveUsers(users);
+
+        //第二次查询
+        System.out.println(this.usersService.findUserAll().size());
     }
 }
