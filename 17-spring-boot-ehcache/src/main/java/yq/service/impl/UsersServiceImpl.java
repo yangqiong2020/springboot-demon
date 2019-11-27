@@ -36,6 +36,7 @@ public class UsersServiceImpl implements UserService {
 	}
 
 	@Override
+    @Cacheable(value="users",key = "#pageable.pageSize")
 	public Page<Users> findUserByPage(Pageable pageable) {
 		return this.usersRepository.findAll(pageable);
 	}
